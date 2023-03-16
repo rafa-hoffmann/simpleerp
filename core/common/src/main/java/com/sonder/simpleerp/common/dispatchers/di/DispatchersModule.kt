@@ -1,7 +1,7 @@
 package com.sonder.simpleerp.common.dispatchers.di
 
-import com.sonder.simpleerp.common.dispatchers.SerpDispatchers.IO
 import com.sonder.simpleerp.common.dispatchers.Dispatcher
+import com.sonder.simpleerp.common.dispatchers.SerpDispatchers.IO
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
