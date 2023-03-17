@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_sales_graph"
+    app:startDestination="@id/sales">
+
+    <fragment
+        android:id="@+id/sales"
+        android:name="com.sonder.simpleerp.sales.salesList.SalesListFragment"
+        android:label="@string/sales_list_fragment_label"
+        tools:layout="@layout/fragment_sales_list">
+        <action
+            android:id="@+id/action_sales_to_products"
+            app:destination="@id/products" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/products"
+        android:name="com.sonder.simpleerp.sales.productsList.ProductsListFragment"
+        android:label="@string/products_list_fragment_label"
+        tools:layout="@layout/fragment_products_list">
+
+        <argument
+            android:name="saleId"
+            app:argType="long" />
+    </fragment>
+</navigation>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="data_error">Failed to load some data</string>
+
+    <string name="sales_total">Sales total: %1$s</string>
+
+    <string name="add_sale_client_name">Client Name</string>
+    <string name="add_sale_action">Add sale</string>
+    <string name="add_sale_error_client_name">Client name can\'t be null</string>
+    <string name="add_sale_success">Sale added successfully</string>
+
+    <string name="sales_list_add">Add sale</string>
+    <string name="sales_list_fragment_label">Sales</string>
+
+    <string name="sale_item_forward">view products</string>
+
+    <string name="add_product_name">Name</string>
+    <string name="add_product_quantity">Quantity</string>
+    <string name="add_product_value">Value</string>
+    <string name="add_product_action">Add product</string>
+    <string name="add_product_error">All fields must be filled</string>
+    <string name="add_product_success">Product added successfully</string>
+
+    <string name="product_item_quantity">Qty: %1$s</string>
+    <string name="product_item_unit_value">Unit value: %1$s</string>
+    <string name="product_item_total_value">Total value: %1$s</string>
+
+    <string name="products_total_value">Order value: %1$s</string>
+    <string name="products_total_quantity">Order quantity: %1$s</string>
+
+    <string name="products_list_fragment_label">Products</string>
+</resources>

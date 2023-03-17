@@ -6,7 +6,7 @@ import com.sonder.simpleerp.model.data.SaleResource
 
 @Entity(tableName = "sales")
 data class SaleEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long?,
     val clientName: String
 )
 

@@ -6,7 +6,7 @@ import com.sonder.simpleerp.model.data.ProductResource
 
 @Entity(tableName = "products")
 data class ProductEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true) val id: Long?,
     val name: String,
     val quantity: Int,
     val value: Float,
