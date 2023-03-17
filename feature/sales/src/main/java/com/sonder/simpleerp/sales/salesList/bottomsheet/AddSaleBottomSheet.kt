@@ -62,10 +62,11 @@ class AddSaleBottomSheet : BottomSheetDialogFragment() {
                 when (it) {
                     is UiState.Success -> {
                         showToast(getString(R.string.add_sale_success))
+                        addSaleViewModel.resetState()
                         dismiss()
                     }
                     is UiState.Error -> showToast(
-                        it.exception?.message ?: getString(R.string.sales_error)
+                        it.exception?.message ?: getString(R.string.data_error)
                     )
                     else -> {}
                 }
@@ -74,6 +75,6 @@ class AddSaleBottomSheet : BottomSheetDialogFragment() {
     }
 
     companion object {
-        const val TAG = "FilterActivitiesBottomSheet"
+        const val TAG = "AddSaleBottomSheet"
     }
 }

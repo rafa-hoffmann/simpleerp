@@ -7,42 +7,56 @@
     tools:theme="@style/Theme.Material3.DayNight">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/sales_total"
+        android:id="@+id/products_total_value"
         style="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        app:layout_constraintEnd_toStartOf="@id/products_total_quantity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Total: R$ 25.000,20" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/products_total_quantity"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/products_total_value"
+        app:layout_constraintTop_toTopOf="@id/products_total_value"
+        tools:text="Qty total: 25" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sales_list"
+        android:id="@+id/products_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sales_total"
+        app:layout_constraintTop_toBottomOf="@id/products_total_value"
         tools:itemCount="10"
-        tools:listitem="@layout/item_sale" />
+        tools:listitem="@layout/item_product" />
 
     <ProgressBar
-        android:id="@+id/sales_progress_bar"
+        android:id="@+id/products_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_sale"
+        android:id="@+id/add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:contentDescription="@string/sales_list_add"
+        android:contentDescription="@string/add_product_action"
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

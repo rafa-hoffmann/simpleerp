@@ -7,8 +7,6 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="8dp"
-    android:clickable="true"
-    android:focusable="true"
     tools:theme="@style/Theme.Material3.DayNight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,47 +15,49 @@
         android:padding="8dp">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/sale_id"
+            android:id="@+id/product_name"
             style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toStartOf="@id/product_quantity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="1" />
+            tools:text="Clips" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/sale_client_name"
+            android:id="@+id/product_quantity"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Qty: 20" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_unit_value"
             style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@id/sale_value"
-            app:layout_constraintStart_toEndOf="@id/sale_id"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="John Silverhand" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toStartOf="@id/product_total_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_name"
+            tools:text="Value: R$ 25,00" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/sale_value"
+            android:id="@+id/product_total_value"
             style="@style/TextAppearance.Material3.BodyLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/sale_arrow_forward"
-            app:layout_constraintStart_toEndOf="@id/sale_client_name"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="R$ 28.000,50" />
-
-        <ImageView
-            android:id="@+id/sale_arrow_forward"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:contentDescription="@string/sale_item_forward"
-            android:src="@drawable/ic_arrow_forward"
-            app:layout_constraintBottom_toBottomOf="@id/sale_value"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/sale_value"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/product_unit_value"
+            app:layout_constraintTop_toTopOf="@id/product_unit_value"
+            tools:text="Total Value: R$ 25,00" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

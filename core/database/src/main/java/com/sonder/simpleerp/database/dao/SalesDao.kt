@@ -25,6 +25,9 @@ interface SalesDao {
     )
     fun getSalesWithValue(): List<SaleWithValueEntity>
 
+    @Query("SELECT * FROM products WHERE products.saleId = :saleId")
+    fun getProductsBySale(saleId: Long): List<ProductEntity>
+
     @Insert
     suspend fun insertProduct(productEntity: ProductEntity)
 

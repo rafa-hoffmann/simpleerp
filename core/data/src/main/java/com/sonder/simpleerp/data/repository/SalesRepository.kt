@@ -10,6 +10,8 @@ interface SalesRepository {
 
     fun getSalesWithValue(): Flow<List<SaleWithValueResource>>
 
+    fun getProducts(saleId: Long): Flow<List<ProductResource>>
+
     fun insertSale(saleResource: SaleResource): Flow<Unit>
 
     fun insertProduct(productResource: ProductResource): Flow<Unit>

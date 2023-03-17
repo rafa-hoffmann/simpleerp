@@ -1,4 +1,4 @@
-package com.sonder.simpleerp.sales.salesList
+package com.sonder.simpleerp.sales.productsList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,45 +12,41 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import com.sonder.simpleerp.feature.activity_list.R
-import com.sonder.simpleerp.feature.activity_list.databinding.FragmentSalesListBinding
-import com.sonder.simpleerp.model.data.SaleResource
+import com.sonder.simpleerp.feature.activity_list.databinding.FragmentProductsListBinding
 import com.sonder.simpleerp.sales.UiState
-import com.sonder.simpleerp.sales.productsList.ProductsListFragment
-import com.sonder.simpleerp.sales.salesList.adapter.SalesListAdapter
-import com.sonder.simpleerp.sales.salesList.bottomsheet.AddSaleBottomSheet
-import com.sonder.simpleerp.sales.salesList.bottomsheet.AddSaleViewModel
+import com.sonder.simpleerp.sales.productsList.adapter.ProductsListAdapter
+import com.sonder.simpleerp.sales.productsList.bottomsheet.AddProductBottomSheet
+import com.sonder.simpleerp.sales.productsList.bottomsheet.AddProductViewModel
 import com.sonder.simpleerp.sales.showToast
 import com.sonder.simpleerp.sales.toMonetaryUnit
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SalesListFragment : Fragment() {
+class ProductsListFragment : Fragment() {
 
-    private val viewModel: SalesListViewModel by viewModels()
-    private val addSaleViewModel: AddSaleViewModel by activityViewModels()
+    private val viewModel: ProductsListViewModel by viewModels()
+    private val addProductViewModel: AddProductViewModel by activityViewModels()
 
-    private var _binding: FragmentSalesListBinding? = null
+    private var _binding: FragmentProductsListBinding? = null
     private val binding get() = _binding!!
 
-    private var _adapter: SalesListAdapter? = null
+    private var _adapter: ProductsListAdapter? = null
     private val adapter get() = _adapter!!
+
+    private val saleId: Long by lazy {
+        requireArguments().getLong(SALE_ID)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSalesListBinding.inflate(inflater, container, false)
-        _adapter = SalesListAdapter { onSaleClick(it) }
+        _binding = FragmentProductsListBinding.inflate(inflater, container, false)
+        _adapter = ProductsListAdapter()
         return binding.root
-    }
-
-    private fun onSaleClick(saleResource: SaleResource) {
-        val bundle = bundleOf(ProductsListFragment.SALE_ID to saleResource.id)
-        findNavController().navigate(R.id.products, bundle)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,21 +54,22 @@ class SalesListFragment : Fragment() {
         setupObservers()
         setupButtons()
 
-        viewModel.getSalesWithValue()
+        viewModel.getProducts(saleId)
 
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun setupButtons() {
-        binding.addSale.setOnClickListener {
-            val bottomSheet = AddSaleBottomSheet()
-
-            bottomSheet.show(childFragmentManager, AddSaleBottomSheet.TAG)
+        binding.addProduct.setOnClickListener {
+            val bottomSheet = AddProductBottomSheet()
+            val bundle = bundleOf(AddProductBottomSheet.SALE_ID to saleId)
+            bottomSheet.arguments = bundle
+            bottomSheet.show(parentFragmentManager, AddProductBottomSheet.TAG)
         }
     }
 
     private fun setupRecyclerView() {
-        binding.salesList.adapter = adapter
+        binding.productsList.adapter = adapter
     }
 
     private fun setupObservers() {
@@ -80,11 +77,14 @@ class SalesListFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
                 launch {
-                    viewModel.salesState.collect {
+                    viewModel.productsState.collect {
                         when (it) {
                             is UiState.Success -> {
                                 adapter.submitList(it.value)
-                                updateSalesTotal(it.value.sumOf { item -> item.value.toDouble() })
+                                updateProductsTotal(
+                                    it.value.sumOf { item -> item.quantity },
+                                    it.value.sumOf { item -> item.quantity * item.value.toDouble() }
+                                )
                                 updateProgressBar(loading = false)
                             }
                             is UiState.Error -> {
@@ -98,9 +98,9 @@ class SalesListFragment : Fragment() {
                 }
 
                 launch {
-                    addSaleViewModel.addSaleState.collect {
+                    addProductViewModel.addProductState.collect {
                         if (it is UiState.Success) {
-                            viewModel.getSalesWithValue()
+                            viewModel.getProducts(saleId)
                         }
                     }
                 }
@@ -108,11 +108,18 @@ class SalesListFragment : Fragment() {
         }
     }
 
-    private fun updateSalesTotal(value: Double) {
-        binding.salesTotal.text = getString(R.string.sales_total, value.toMonetaryUnit())
+    private fun updateProductsTotal(qty: Int, value: Double) {
+        binding.productsTotalQuantity.text =
+            getString(R.string.products_total_quantity, qty.toString())
+        binding.productsTotalValue.text =
+            getString(R.string.products_total_value, value.toMonetaryUnit())
     }
 
     private fun updateProgressBar(loading: Boolean) {
-        binding.salesProgressBar.isVisible = loading
+        binding.productsProgressBar.isVisible = loading
+    }
+
+    companion object {
+        const val SALE_ID = "saleId"
     }
 }

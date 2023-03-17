@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.sonder.simpleerp.feature.activity_list.databinding.ItemSaleBinding
+import com.sonder.simpleerp.model.data.SaleResource
 import com.sonder.simpleerp.model.data.SaleWithValueResource
 import com.sonder.simpleerp.sales.toMonetaryUnit
 
-class SalesListAdapter :
+class SalesListAdapter(private val onSaleClick: (SaleResource) -> (Unit)) :
     ListAdapter<SaleWithValueResource, SalesListAdapter.SaleItemViewHolder>(this) {
 
     inner class SaleItemViewHolder(private val binding: ItemSaleBinding) :
@@ -21,6 +22,10 @@ class SalesListAdapter :
                 saleClientName.text = saleWithValueResource.sale.clientName
 
                 saleValue.text = saleWithValueResource.value.toMonetaryUnit()
+
+                saleCard.setOnClickListener {
+                    onSaleClick(saleWithValueResource.sale)
+                }
             }
         }
     }

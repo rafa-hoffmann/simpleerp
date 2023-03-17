@@ -30,6 +30,10 @@ class SalesRepositoryImpl @Inject constructor(
         emit(salesDao.getSalesWithValue().asExternalModel())
     }.flowOn(ioDispatcher)
 
+    override fun getProducts(saleId: Long) = flow {
+        emit(salesDao.getProductsBySale(saleId).asExternalModel())
+    }.flowOn(ioDispatcher)
+
     override fun insertSale(saleResource: SaleResource) = flow {
         emit(salesDao.insertSale(saleResource.asEntity()))
     }.flowOn(ioDispatcher)
