@@ -1,12 +1,19 @@
 # simpleerp
 
+App that can register sales and products within a sale. Keeps the list of sales and products in a
+local database and let's the user view the total value of sales and order.
+
 # setup
 
-Just use Android Studio recommended version (as time of write, it's Eletric Eel) and build the
-project in the `demoDebug` variant.
+Just use Android Studio [latest version](https://developer.android.com/studio) and build the project
+in the `demoDebug` variant, running the `app` configuration.
 
 # preview
 
+<video width="320" autoplay muted>
+  <source src="preview/simpleerppreview.webm" type="video/webm">
+Your browser does not support the video tag.
+</video>
 
 # architecture
 

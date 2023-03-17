@@ -21,7 +21,7 @@
     <string name="add_product_error">All fields must be filled</string>
     <string name="add_product_success">Product added successfully</string>
 
-    <string name="product_item_quantity">Qty: %1$s</string>
+    <string name="product_item_quantity">Quantity: %1$s</string>
     <string name="product_item_unit_value">Unit value: %1$s</string>
     <string name="product_item_total_value">Total value: %1$s</string>
 
