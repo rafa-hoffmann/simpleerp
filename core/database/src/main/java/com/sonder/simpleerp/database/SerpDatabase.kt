@@ -11,7 +11,7 @@ import com.sonder.simpleerp.database.model.SaleEntity
         SaleEntity::class,
         ProductEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 abstract class SerpDatabase : RoomDatabase() {

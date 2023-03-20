@@ -20,5 +20,5 @@ object DatabaseModule {
         context,
         SerpDatabase::class.java,
         "serp-database",
-    ).build()
+    ).addMigrations(MIGRATION_1_2).build()
 }

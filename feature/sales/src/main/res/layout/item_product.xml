@@ -53,10 +53,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/product_delete_action"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_unit_value"
             tools:text="Total Value: R$ 25,00" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_discount_value"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toStartOf="@id/product_delete_action"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_total_value"
+            tools:text="Discount: R$ 5,00" />
+        
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/product_delete_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/product_total_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_total_value"
+            app:layout_constraintTop_toTopOf="@id/product_total_value" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

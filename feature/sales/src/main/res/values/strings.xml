@@ -24,9 +24,11 @@
     <string name="product_item_quantity">Quantity: %1$s</string>
     <string name="product_item_unit_value">Unit value: %1$s</string>
     <string name="product_item_total_value">Total value: %1$s</string>
+    <string name="product_item_discount_value">Discount value: %1$s</string>
 
     <string name="products_total_value">Order value: %1$s</string>
     <string name="products_total_quantity">Order quantity: %1$s</string>
+    <string name="products_discount_value">Discount</string>
 
     <string name="products_list_fragment_label">Products</string>
 </resources>

@@ -15,4 +15,6 @@ interface SalesRepository {
     fun insertSale(saleResource: SaleResource): Flow<Unit>
 
     fun insertProduct(productResource: ProductResource): Flow<Unit>
+
+    fun deleteProduct(productResource: ProductResource): Flow<Unit>
 }
