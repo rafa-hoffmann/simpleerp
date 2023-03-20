@@ -8,6 +8,7 @@ import com.sonder.simpleerp.database.model.asExternalModel
 import com.sonder.simpleerp.model.data.ProductResource
 import com.sonder.simpleerp.model.data.SaleResource
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
@@ -40,5 +41,9 @@ class SalesRepositoryImpl @Inject constructor(
 
     override fun insertProduct(productResource: ProductResource) = flow {
         emit(salesDao.insertProduct(productResource.asEntity()))
+    }.flowOn(ioDispatcher)
+
+    override fun deleteProduct(productResource: ProductResource) = flow {
+        emit(salesDao.deleteProduct(productResource.asEntity()))
     }.flowOn(ioDispatcher)
 }

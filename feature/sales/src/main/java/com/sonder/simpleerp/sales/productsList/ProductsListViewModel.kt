@@ -24,6 +24,15 @@ class ProductsListViewModel @Inject constructor(
 
     val productsState: StateFlow<UiState<List<ProductResource>>> = _productsState
 
+    private val _deleteProductState: MutableStateFlow<UiState<Unit>> =
+        MutableStateFlow(UiState.Initial)
+
+    val deleteProductState: StateFlow<UiState<Unit>> = _deleteProductState
+
+    private val _productsDiscountState: MutableStateFlow<Float> = MutableStateFlow(0.0f)
+
+    val productsDiscountState: StateFlow<Float> = _productsDiscountState
+
     fun getProducts(saleId: Long) {
         viewModelScope.launch {
             repository.getProducts(saleId).asResult().collect { salesResult ->
@@ -35,6 +44,26 @@ class ProductsListViewModel @Inject constructor(
                     }
                 }
             }
+        }
+    }
+
+    fun deleteProduct(productResource: ProductResource) {
+        viewModelScope.launch {
+            repository.deleteProduct(productResource).asResult().collect { deleteProductResult ->
+                _deleteProductState.update {
+                    when (deleteProductResult) {
+                        is Result.Success -> UiState.Success(deleteProductResult.data)
+                        Result.Loading -> UiState.Loading
+                        is Result.Error -> UiState.Error(deleteProductResult.exception)
+                    }
+                }
+            }
+        }
+    }
+
+    fun updateProductsDiscount(value: Float) {
+        viewModelScope.launch {
+            _productsDiscountState.value = value
         }
     }
 }

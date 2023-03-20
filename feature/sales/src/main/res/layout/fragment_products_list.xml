@@ -29,6 +29,25 @@
         app:layout_constraintTop_toTopOf="@id/products_total_value"
         tools:text="Qty total: 25" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/products_discount_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/products_discount_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/products_total_value">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/products_discount_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/products_list"
         android:layout_width="match_parent"
@@ -37,7 +56,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/products_total_value"
+        app:layout_constraintTop_toBottomOf="@id/products_discount_layout"
         tools:itemCount="10"
         tools:listitem="@layout/item_product" />
 

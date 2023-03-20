@@ -8,7 +8,7 @@ import com.sonder.simpleerp.model.data.ProductResource
 data class ProductEntity(
     @PrimaryKey(autoGenerate = true) val id: Long?,
     val name: String,
-    val quantity: Int,
+    val quantity: Float,
     val value: Float,
     val saleId: Long
 )

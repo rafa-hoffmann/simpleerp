@@ -70,7 +70,7 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
 
     private fun getProductName() = binding.addProductName.text.toString()
 
-    private fun getValidQuantity() = binding.addProductQuantity.text?.toString()?.toInt() ?: 0
+    private fun getValidQuantity() = binding.addProductQuantity.text?.toString()?.toFloat() ?: 0.0f
 
     private fun setupObservers() {
         viewLifecycleOwner.lifecycleScope.launch {

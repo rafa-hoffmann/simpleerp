@@ -1,6 +1,7 @@
 package com.sonder.simpleerp.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.sonder.simpleerp.database.model.ProductEntity
@@ -33,4 +34,7 @@ interface SalesDao {
 
     @Insert
     suspend fun insertSale(saleEntity: SaleEntity)
+
+    @Delete
+    suspend fun deleteProduct(productEntity: ProductEntity)
 }
